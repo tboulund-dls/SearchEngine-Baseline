@@ -9,7 +9,7 @@ namespace ApiSearch.Controllers;
 public class SearchController : ControllerBase
 {
     [HttpGet]
-    public SearchResult Search(string terms, int numberOfResults)
+    public async Task<SearchResult> Search(string terms, int numberOfResults)
     {
         var mSearchLogic = new SearchLogic(new Database());
         var result = new SearchResult();
@@ -31,7 +31,7 @@ public class SearchController : ControllerBase
 
         DateTime start = DateTime.Now;
 
-        var docIds = mSearchLogic.GetDocuments(wordIds);
+        var docIds = await mSearchLogic.GetDocumentsAsync(wordIds);
 
         // get details for the first 10             
         var top = new List<int>();
@@ -43,7 +43,7 @@ public class SearchController : ControllerBase
         result.ElapsedMlliseconds = (DateTime.Now - start).TotalMilliseconds;
 
         int idx = 0;
-        foreach (var doc in mSearchLogic.GetDocumentDetails(top))
+        foreach (var doc in await mSearchLogic.GetDocumentDetailsAsync(top))
         {
             result.Documents.Add(new Document{Id = idx+1, Path = doc, NumberOfOccurences = docIds[idx].Value});
             idx++;

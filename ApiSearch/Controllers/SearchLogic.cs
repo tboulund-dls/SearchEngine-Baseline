@@ -9,7 +9,10 @@
         public SearchLogic(Database database)
         {
             mDatabase = database;
-            mWords = mDatabase.GetAllWords();
+            //mWords = mDatabase.GetAllWords();
+            var wordTask = mDatabase.GetAllWords();
+            wordTask.Wait();
+            mWords = wordTask.Result;
         }
 
         public int GetIdOf(string word)
@@ -19,14 +22,14 @@
             return -1;
         }
 
-        public List<KeyValuePair<int, int>> GetDocuments(List<int> wordIds)
+        public async Task<List<KeyValuePair<int, int>>> GetDocumentsAsync(List<int> wordIds)
         {
-            return mDatabase.GetDocuments(wordIds);
+            return await mDatabase.GetDocuments(wordIds);
         }
 
-        public List<string> GetDocumentDetails(List<int> docIds)
+        public async Task<List<string>> GetDocumentDetailsAsync(List<int> docIds)
         {
-            return mDatabase.GetDocDetails(docIds);
+            return await mDatabase.GetDocDetails(docIds);
         }
     }
 }
