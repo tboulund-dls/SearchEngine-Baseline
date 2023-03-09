@@ -1,15 +1,23 @@
 version: "3.9"
 
 services:
-  api:
+  load-balancer:
+    build:
+      context: .
+      dockerfile: LoadBalancer/Dockerfile
+    depends_on:
+      - api
+  api-search:
     build:
       context: .
       dockerfile: "ApiSearch/Dockerfile"
+    depends_on:
+      - load-balancer
     volumes:
       - "C:\\University Work\\SearchEngine-Baseline\\EnronMini:/data"
     deploy:
       replicas: 5
-  web:
+  web-ui:
     build:
       context: .
       dockerfile: "WebSearch/Dockerfile"

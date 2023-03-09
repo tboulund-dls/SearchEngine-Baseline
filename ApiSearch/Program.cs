@@ -1,3 +1,14 @@
+using RestSharp;
+
+var restClient = new RestClient("https://load-balancer");
+restClient.Post(new RestRequest("configuration", Method.Post)
+    .AddJsonBody(new
+    {
+        Url = "http://" + Environment.MachineName,
+    }));
+Console.WriteLine("Hostname: " + Environment.MachineName);
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
