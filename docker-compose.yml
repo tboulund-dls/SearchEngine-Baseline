@@ -12,9 +12,9 @@ services:
       context: .
       dockerfile: "ApiSearch/Dockerfile"
     volumes:
-      - "C:\\University Work\\SearchEngine-Baseline\\EnronMini:/data"
+      - "C:\\University Work\\SearchEngine-Baseline\\EnronMiniSource:/data"
     deploy:
-      replicas: 5
+      replicas: 1
     depends_on:
       - load-balancer
   web-ui:

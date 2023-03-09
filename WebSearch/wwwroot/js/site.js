@@ -15,7 +15,7 @@ var ViewModel = function() {
     
     me.search = function (){
         $.ajax({
-            url: "https://localhost:9000/Search?terms=" + me.userQuery() + "&numberOfResults=10", //todo use load balancer
+            url: "http://localhost:9000/LoadBalancer?terms=" + me.userQuery() + "&numberOfResults=10", //todo use load balancer
             success: function (data) {
                 me.queryMatches(data.documents.length);
                 me.queryTime(data.elapsedMilliseconds);

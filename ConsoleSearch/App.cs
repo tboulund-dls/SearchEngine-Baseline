@@ -12,8 +12,8 @@ namespace ConsoleSearch
         public void Run()
         {
             HttpClient api = new HttpClient();
-            api.BaseAddress = new Uri("http://load-balancer");
-            // api.BaseAddress = new Uri("http://localhost:8889");
+           // api.BaseAddress = new Uri("http://load-balancer");
+            api.BaseAddress = new Uri("http://localhost:9000");
             
             Console.WriteLine("Console Search");
             
@@ -23,7 +23,7 @@ namespace ConsoleSearch
                 string input = Console.ReadLine() ?? string.Empty;
                 if (input.Equals("q")) break;
 
-                Task<string> task = api.GetStringAsync("/Search?terms=" + input + "&numberOfResults=10");
+                Task<string> task = api.GetStringAsync("/LoadBalancer?terms=" + input + "&numberOfResults=10");
                 task.Wait();
                 string resultString = task.Result;
                 SearchResult result = JsonConvert.DeserializeObject<SearchResult>(resultString);

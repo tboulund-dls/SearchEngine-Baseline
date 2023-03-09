@@ -6,7 +6,7 @@ namespace LoadBalancer.Controllers {
     [ApiController]
     [Route("[controller]")]
     public class LoadBalancerController : Controller {
-        private readonly ILoadBalancer _loadBalancer = new LoadBalancer.LoadBalancer(new BasicStrategy());
+        private static readonly ILoadBalancer _loadBalancer = new LoadBalancer.LoadBalancer(new BasicStrategy()); //todo make loadbalancer singleton
 
         public LoadBalancerController() {
             _loadBalancer.SetActiveStrategy(new BasicStrategy());
@@ -22,7 +22,7 @@ namespace LoadBalancer.Controllers {
             string serviceUrl = _loadBalancer.NextService();
 
             RestClient serviceClient = new(serviceUrl);
-            RestRequest request = new();
+            RestRequest request = new("/Search");
             request.AddParameter("terms", terms);
             request.AddParameter("numberOfResults", numberOfResults);
             Task<SearchResult?> response = serviceClient.GetAsync<SearchResult>(request);

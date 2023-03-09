@@ -1,7 +1,8 @@
 using RestSharp;
 
 var restClient = new RestClient("http://load-balancer");
-restClient.Post(new RestRequest("LoadBalancer?url=http://" + Environment.MachineName, Method.Post));
+restClient.Post(new RestRequest("LoadBalancer?url=https://" + Environment.MachineName, Method.Post));  //todo maybe an issue is here, api search always shuts down 
+Console.WriteLine("this is a test"+restClient);
 Console.WriteLine("Hostname: " + Environment.MachineName);
 
 
