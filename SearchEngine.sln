@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiSearch", "ApiSearch\ApiS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSearch", "WebSearch\WebSearch.csproj", "{071E7793-BC53-4592-8C4F-FCB389F5188C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadBalancer", "LoadBalancer\LoadBalancer.csproj", "{4A0DA6B6-F516-4BBF-ACB6-3EBBC49272CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{071E7793-BC53-4592-8C4F-FCB389F5188C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{071E7793-BC53-4592-8C4F-FCB389F5188C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{071E7793-BC53-4592-8C4F-FCB389F5188C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A0DA6B6-F516-4BBF-ACB6-3EBBC49272CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0DA6B6-F516-4BBF-ACB6-3EBBC49272CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0DA6B6-F516-4BBF-ACB6-3EBBC49272CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0DA6B6-F516-4BBF-ACB6-3EBBC49272CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

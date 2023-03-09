@@ -15,18 +15,19 @@ var ViewModel = function() {
     
     me.search = function (){
         $.ajax({
-            url: "http:localhost:8889/Search?terms=" + me.userQuery() + "&numberOfResults=10",
+            url: "http://localhost:8889/Search?terms=" + me.userQuery() + "&numberOfResults=10", //todo use load balancer
             success: function (data) {
                 me.queryMatches(data.documents.length);
                 me.queryTime(data.elapsedMilliseconds);
                 me.returnedQuery.removeAll();
                 data.documents.forEach( function (hit) {
-                    me.returnedQuery.push(queryMatches);
+                    me.returnedQuery.push(hit);
+                    console.log(hit);
                 });
             }
             });
     }
 
-    ko.applyBindings(new ViewModel());
     
 }
+ko.applyBindings(new ViewModel());

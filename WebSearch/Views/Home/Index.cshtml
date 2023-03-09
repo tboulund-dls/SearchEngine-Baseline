@@ -6,13 +6,13 @@
     <div>
         <h1 class="display-4">Web Search</h1>
         <input data-bind="textInput: userQuery"/>
-        <button type="button" class="btn btn-primary" data-bind="click: searchUserQuery">SEARCH</button>
+        <button type="button" class="btn btn-primary" data-bind="click: search">SEARCH</button>
     </div>
     <div class="align-content-center">
         <h4>Number of hits: </h4>
         <h4>Time taken in milliseconds: </h4>
         <ul data-role="listview" data-bind="foreach: { data: returnedQuery, as: 'listItem'}">
-            <li><a href="#" data-bind="text: listItem.text"></a></li>
+            <li><a href="#" data-bind="text: listItem.path"></a></li>
         </ul>
     </div>
 
