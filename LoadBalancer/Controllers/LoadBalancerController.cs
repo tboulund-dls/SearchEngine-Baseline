@@ -31,7 +31,6 @@ namespace LoadBalancer.Controllers {
             if (result is null) {
                 return NotFound("Search failed lmao");
             }
-
             return Ok(result);
         }
     }

@@ -5,18 +5,18 @@ services:
     build:
       context: .
       dockerfile: LoadBalancer/Dockerfile
-    depends_on:
-      - api-search
+    ports:
+      - 9000:80
   api-search:
     build:
       context: .
       dockerfile: "ApiSearch/Dockerfile"
-    depends_on:
-      - load-balancer
     volumes:
       - "C:\\University Work\\SearchEngine-Baseline\\EnronMini:/data"
     deploy:
       replicas: 5
+    depends_on:
+      - load-balancer
   web-ui:
     build:
       context: .

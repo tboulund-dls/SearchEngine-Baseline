@@ -1,11 +1,7 @@
 using RestSharp;
 
-var restClient = new RestClient("https://load-balancer");
-restClient.Post(new RestRequest("configuration", Method.Post)
-    .AddJsonBody(new
-    {
-        Url = "http://" + Environment.MachineName,
-    }));
+var restClient = new RestClient("http://load-balancer");
+restClient.Post(new RestRequest("LoadBalancer?url=http://" + Environment.MachineName, Method.Post));
 Console.WriteLine("Hostname: " + Environment.MachineName);
 
 
