@@ -15,7 +15,7 @@ var ViewModel = function() {
     
     me.search = function (){
         $.ajax({
-            url: "http://localhost:8889/Search?terms=" + me.userQuery() + "&numberOfResults=10", //todo use load balancer
+            url: "https://load-balancer/Search?terms=" + me.userQuery() + "&numberOfResults=10", //todo use load balancer
             success: function (data) {
                 me.queryMatches(data.documents.length);
                 me.queryTime(data.elapsedMilliseconds);
@@ -27,7 +27,5 @@ var ViewModel = function() {
             }
             });
     }
-
-    
 }
 ko.applyBindings(new ViewModel());

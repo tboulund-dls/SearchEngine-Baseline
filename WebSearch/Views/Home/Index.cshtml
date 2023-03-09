@@ -9,8 +9,8 @@
         <button type="button" class="btn btn-primary" data-bind="click: search">SEARCH</button>
     </div>
     <div class="align-content-center">
-        <h4>Number of hits: </h4>
-        <h4>Time taken in milliseconds: </h4>
+        <h4>Number of hits: {{queryMatches}} </h4>
+        <h4>Time taken in: {{queryTime}} </h4> 
         <ul data-role="listview" data-bind="foreach: { data: returnedQuery, as: 'listItem'}">
             <li><a href="#" data-bind="text: listItem.path"></a></li>
         </ul>

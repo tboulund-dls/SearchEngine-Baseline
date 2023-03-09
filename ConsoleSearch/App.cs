@@ -12,7 +12,8 @@ namespace ConsoleSearch
         public void Run()
         {
             HttpClient api = new HttpClient();
-            api.BaseAddress = new Uri("http://localhost:8889");
+            api.BaseAddress = new Uri("http://load-balancer");
+            // api.BaseAddress = new Uri("http://localhost:8889");
             
             Console.WriteLine("Console Search");
             
