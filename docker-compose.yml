@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: LoadBalancer/Dockerfile
     depends_on:
-      - api
+      - api-search
   api-search:
     build:
       context: .

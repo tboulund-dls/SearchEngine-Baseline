@@ -9,6 +9,11 @@ public class LoadBalancerController : Controller
 {
     private ILoadBalancer _loadBalancer = new LoadBalancer.LoadBalancer(new BasicStrategy());
 
+    public LoadBalancerController()
+    {
+        _loadBalancer.SetActiveStrategy(new BasicStrategy());
+    }
+
     [HttpPost]
     public void Create(string url)
     {
