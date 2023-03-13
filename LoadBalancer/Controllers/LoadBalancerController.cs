@@ -1,24 +1,30 @@
-﻿using LoadBalancer.LoadBalancer;
+﻿using Common;
+using LoadBalancer.LoadBalancer;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Services;
 using RestSharp;
 namespace LoadBalancer.Controllers {
     [ApiController]
     [Route("[controller]")]
-    public class LoadBalancerController : Controller {
-        private static readonly ILoadBalancer _loadBalancer = new LoadBalancer.LoadBalancer(new BasicStrategy()); //todo make loadbalancer singleton
+    public class LoadBalancerController : Controller
+    {
+        private static readonly ILoadBalancer
+            _loadBalancer = new LoadBalancer.LoadBalancer(new BasicStrategy()); //todo make loadbalancer singleton
 
-        public LoadBalancerController() {
+        public LoadBalancerController()
+        {
             _loadBalancer.SetActiveStrategy(new BasicStrategy());
         }
-        
+
         [HttpPost]
-        public void Create(string url) {
+        public void Create(string url)
+        {
             _loadBalancer.AddService(url);
+            Console.WriteLine("added service: " + url);
         }
 
         [HttpGet]
-        public IActionResult HandleSearch(string terms, int numberOfResults) {
+        public IActionResult Search(string terms, int numberOfResults)
+        {
             string serviceUrl = _loadBalancer.NextService();
 
             RestClient serviceClient = new(serviceUrl);
@@ -28,9 +34,11 @@ namespace LoadBalancer.Controllers {
             Task<SearchResult?> response = serviceClient.GetAsync<SearchResult>(request);
             response.Wait();
             SearchResult? result = response.Result;
-            if (result is null) {
+            if (result is null)
+            {
                 return NotFound("Search failed lmao");
             }
+            Console.WriteLine("the result is:" + result);
             return Ok(result);
         }
     }

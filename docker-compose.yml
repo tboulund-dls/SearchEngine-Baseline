@@ -14,7 +14,9 @@ services:
     ports:
       - 9021:80
     volumes:
-      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource:/data"
+#      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource/data.db"
+#      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource:/data"
+      - "C:/EnronMini:/data"
     deploy:
       replicas: 1
     depends_on:
