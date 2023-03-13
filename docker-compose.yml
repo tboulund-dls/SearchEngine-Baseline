@@ -6,15 +6,15 @@ services:
       context: .
       dockerfile: LoadBalancer/Dockerfile
     ports:
-      - 9000:80
+      - 9020:80
   api-search:
     build:
       context: .
       dockerfile: "ApiSearch/Dockerfile"
     ports:
-      - 9001:80
+      - 9021:80
     volumes:
-      - "C:\\University Work\\SearchEngine-Baseline\\EnronMiniSource:/data"
+      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource:/data"
     deploy:
       replicas: 1
     depends_on:
@@ -24,4 +24,4 @@ services:
       context: .
       dockerfile: "WebSearch/Dockerfile"
     ports:
-      - 9002:80
+      - 9023:80
