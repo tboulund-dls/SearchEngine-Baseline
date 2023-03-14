@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: LoadBalancer/Dockerfile
-    ports:
+    ports: 
       - 9020:80
   api-search:
     build:

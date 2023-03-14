@@ -22,6 +22,13 @@ namespace LoadBalancer.Controllers {
             Console.WriteLine("added service: " + url);
         }
 
+        [HttpPut("SetStrategy")]
+        public void SetStrategy(Strategy strategy)
+        {
+            _loadBalancer.SetActiveStrategy(strategy.From());
+            Console.WriteLine($"Set strategy to {strategy.ToString()}");
+        }
+
         [HttpGet]
         public IActionResult Search(string terms, int numberOfResults)
         {
