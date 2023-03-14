@@ -10,7 +10,9 @@ public class LoadBalancer : ILoadBalancer
 
     public LoadBalancer()
     {
-        _strategy = new BasicStrategy();
+        //_strategy = new BasicStrategy();
+        //_strategy = new LeastQueriesStrategy();
+        _strategy = new RoundRobinStrategy();
         _services = new List<ServiceModel>();
     }
 

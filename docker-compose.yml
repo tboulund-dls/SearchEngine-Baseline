@@ -14,8 +14,8 @@ services:
     volumes:
 #      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource/data.db"
 #      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource:/data"
-      - "/home/pennyboi/db/EnronMini:/data"
-#      - "C:/EnronMini:/data"
+#      - "/home/pennyboi/db/EnronMini:/data"
+      - "C:/EnronMini:/data"
     deploy:
       replicas: 3
     depends_on:
