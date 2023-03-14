@@ -9,10 +9,14 @@ public class LoadBalancer : ILoadBalancer
     private readonly List<ServiceModel> _services;
 
     public LoadBalancer()
-    {
+    { 
+        //Activate a strategy by commenting out the one you dont want to use
+        //and removing comments from the one you want to use. 
+        
         //_strategy = new BasicStrategy();
         //_strategy = new LeastQueriesStrategy();
         _strategy = new RoundRobinStrategy();
+        
         _services = new List<ServiceModel>();
     }
 

@@ -11,9 +11,7 @@ services:
     build:
       context: .
       dockerfile: "ApiSearch/Dockerfile"
-    volumes:
-#      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource/data.db"
-#      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource:/data"
+    volumes: #link your own database root here
 #      - "/home/pennyboi/db/EnronMini:/data"
       - "C:/EnronMini:/data"
     deploy:
