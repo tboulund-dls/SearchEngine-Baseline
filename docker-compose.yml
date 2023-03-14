@@ -11,14 +11,13 @@ services:
     build:
       context: .
       dockerfile: "ApiSearch/Dockerfile"
-    ports:
-      - 9021:80
     volumes:
 #      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource/data.db"
 #      - "C:/University Work/SearchEngine-Baseline/EnronMiniSource:/data"
-      - "C:/EnronMini:/data"
+      - "/home/pennyboi/db/EnronMini:/data"
+#      - "C:/EnronMini:/data"
     deploy:
-      replicas: 1
+      replicas: 3
     depends_on:
       - load-balancer
   web-ui:

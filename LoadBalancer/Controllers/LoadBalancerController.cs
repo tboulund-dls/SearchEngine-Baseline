@@ -1,5 +1,6 @@
 ﻿using Common;
 using LoadBalancer.LoadBalancer;
+using LoadBalancer.Models;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 namespace LoadBalancer.Controllers {
@@ -7,12 +8,11 @@ namespace LoadBalancer.Controllers {
     [Route("[controller]")]
     public class LoadBalancerController : Controller
     {
-        private static readonly ILoadBalancer
-            _loadBalancer = new LoadBalancer.LoadBalancer(new BasicStrategy()); //todo make loadbalancer singleton
+        private readonly ILoadBalancer _loadBalancer;
 
-        public LoadBalancerController()
+        public LoadBalancerController(ILoadBalancer loadBalancer)
         {
-            _loadBalancer.SetActiveStrategy(new BasicStrategy());
+            _loadBalancer = loadBalancer;
         }
 
         [HttpPost]
@@ -25,9 +25,10 @@ namespace LoadBalancer.Controllers {
         [HttpGet]
         public IActionResult Search(string terms, int numberOfResults)
         {
-            string serviceUrl = _loadBalancer.NextService();
+            ServiceModel service = _loadBalancer.NextService();
+            service.activeQueries += 1;
 
-            RestClient serviceClient = new(serviceUrl);
+            RestClient serviceClient = new(service.url);
             RestRequest request = new("/Search");
             request.AddParameter("terms", terms);
             request.AddParameter("numberOfResults", numberOfResults);
@@ -38,7 +39,10 @@ namespace LoadBalancer.Controllers {
             {
                 return NotFound("Search failed lmao");
             }
-            Console.WriteLine("the result is:" + result);
+            Console.WriteLine($"Returned {result.Documents.Count} results.");
+            Console.WriteLine($"Time taken: {result.ElapsedMlliseconds}ms.");
+            service.activeQueries -= 1;
+            service.currentLatency = result.ElapsedMlliseconds;
             return Ok(result);
         }
     }

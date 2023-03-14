@@ -10,7 +10,7 @@ namespace ApiSearch.Controllers
         {
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = Config.DatabasePath;
-            
+
             _connection = new SqliteConnection(connectionStringBuilder.ConnectionString);
             _connection.Open();
         }

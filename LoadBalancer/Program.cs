@@ -1,8 +1,13 @@
+using LoadBalancer.LoadBalancer;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddSingleton<ILoadBalancer,LoadBalancer.LoadBalancer.LoadBalancer>(); //I love this reference path
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

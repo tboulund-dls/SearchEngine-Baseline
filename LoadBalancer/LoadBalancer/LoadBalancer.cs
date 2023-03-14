@@ -1,24 +1,27 @@
-﻿namespace LoadBalancer.LoadBalancer;
+﻿using LoadBalancer.Models;
+using LoadBalancer.Strategies;
+
+namespace LoadBalancer.LoadBalancer;
 
 public class LoadBalancer : ILoadBalancer
 {
     private ILoadBalancerStrategy _strategy;
-    private List<string> _services;
+    private readonly List<ServiceModel> _services;
 
-    public LoadBalancer(ILoadBalancerStrategy strategy)
+    public LoadBalancer()
     {
-        _strategy = strategy;
-        _services = new List<string>();
+        _strategy = new IdkStrategy();
+        _services = new List<ServiceModel>();
     }
 
-    public List<string> GetAllServices()
+    public List<ServiceModel> GetAllServices()
     {
         return _services;
     }
 
     public int AddService(string url)
     {
-        _services.Add(url);
+        _services.Add(new ServiceModel{url = url});
         return _services.Count - 1;
     }
         
@@ -30,7 +33,7 @@ public class LoadBalancer : ILoadBalancer
         
     public ILoadBalancerStrategy GetActiveStrategy()
     {
-        return _strategy; //todo manually select strat
+        return _strategy; 
     }
 
     public void SetActiveStrategy(ILoadBalancerStrategy strategy)
@@ -38,7 +41,7 @@ public class LoadBalancer : ILoadBalancer
         _strategy = strategy;
     }
 
-    public string NextService()
+    public ServiceModel NextService()
     {
         return _strategy.NextService(_services);
     }
