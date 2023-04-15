@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Common;
+using Newtonsoft.Json;
 
 namespace ConsoleSearch
 {
@@ -7,8 +11,8 @@ namespace ConsoleSearch
     {
         public void Run()
         {
-            SearchLogic mSearchLogic = new SearchLogic(new Database());
-            Console.WriteLine("Console Search");
+            HttpClient api = new HttpClient();
+            api.BaseAddress = new Uri("http://localhost:9020");
             
             while (true)
             {
@@ -16,41 +20,21 @@ namespace ConsoleSearch
                 string input = Console.ReadLine() ?? string.Empty;
                 if (input.Equals("q")) break;
 
-                var wordIds = new List<int>();
-                var searchTerms = input.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-                foreach (var t in searchTerms)
+                Task<string> task = api.GetStringAsync("/LoadBalancer?terms=" + input + "&numberOfResults=10");
+                task.Wait();
+                string resultString = task.Result;
+                SearchResult result = JsonConvert.DeserializeObject<SearchResult>(resultString);
+                
+                foreach (var t in result.IgnoredTerms)
                 {
-                    int id = mSearchLogic.GetIdOf(t);
-                    if (id != -1)
-                    {
-                        wordIds.Add(id);
-                    }
-                    else
-                    {
-                        Console.WriteLine(t + " will be ignored");
-                    }
+                    Console.WriteLine($"Ignored {t}");
                 }
 
-                DateTime start = DateTime.Now;
-
-                var docIds = mSearchLogic.GetDocuments(wordIds);
-
-                // get details for the first 10             
-                var top10 = new List<int>();
-                foreach (var p in docIds.GetRange(0, Math.Min(10, docIds.Count)))
+                foreach (var resultDoc in result.Documents)
                 {
-                    top10.Add(p.Key);
+                    Console.WriteLine(resultDoc.Id + ":" + resultDoc.Path + "Number of terms found: " + resultDoc.NumberOfOccurences);
                 }
-
-                TimeSpan used = DateTime.Now - start;
-
-                int idx = 0;
-                foreach (var doc in mSearchLogic.GetDocumentDetails(top10))
-                {
-                    Console.WriteLine("" + (idx+1) + ": " + doc + " -- contains " + docIds[idx].Value + " search terms");
-                    idx++;
-                }
-                Console.WriteLine("Documents: " + docIds.Count + ". Time: " + used.TotalMilliseconds);
+                Console.WriteLine("Found "+ result.Documents.Count + "in: " + result.ElapsedMlliseconds + "ms");
             }
         }
     }
