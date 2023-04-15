@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container text-center">
+    <div>
+        <h1 class="display-4 mb-4">Web Search</h1>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter your query" data-bind="textInput: userQuery">
+            <button type="button" class="btn btn-primary ml-2" data-bind="click: search">Search</button>
+        </div>
+    </div>
+    <div class="mt-4">
+        <p class="lead">Number of hits: <strong data-bind="text: queryMatches"></strong></p>
+        <p class="lead">Time taken: <strong data-bind="text: queryTime"></strong></p>
+        <hr>
+        <ul class="list-unstyled">
+            <!-- ko foreach: returnedQuery -->
+            <li class="mb-2">
+                <h5><a href="#" data-bind="text: path"></a></h5>
+                <p data-bind="text: summary"></p>
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+</div>
