@@ -13,6 +13,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors(config => config.AllowAnyOrigin());
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
 
