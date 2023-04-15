@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadBalancer", "LoadBalancer\LoadBalancer.csproj", "{D1AAD23D-EA22-4F0B-9E16-45B9AB991907}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAPI", "SearchAPI\SearchAPI.csproj", "{204E2DAF-D5DA-41C4-959C-005FDF724045}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D1AAD23D-EA22-4F0B-9E16-45B9AB991907}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1AAD23D-EA22-4F0B-9E16-45B9AB991907}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1AAD23D-EA22-4F0B-9E16-45B9AB991907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{204E2DAF-D5DA-41C4-959C-005FDF724045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{204E2DAF-D5DA-41C4-959C-005FDF724045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{204E2DAF-D5DA-41C4-959C-005FDF724045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{204E2DAF-D5DA-41C4-959C-005FDF724045}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
