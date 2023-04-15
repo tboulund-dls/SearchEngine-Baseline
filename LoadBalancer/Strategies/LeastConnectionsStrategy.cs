@@ -20,7 +20,6 @@ public class LeastConnectionsStrategy : ILoadBalancerStrategy
         {
             throw new Exception("LeastConnectionsStrategy selected server not found");
         };
-        
         return selectedServer;
     }
 }
