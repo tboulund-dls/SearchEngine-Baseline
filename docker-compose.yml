@@ -23,6 +23,6 @@ services:
     build:
       context: .
       dockerfile: "WebSearch/Dockerfile"
-    image: nitrozeus1/web-search:${DEPLOY_NUMBER}
+    image: nitrozeus1/web-search:${DEPLOY_NUMBER} 
     ports:
       - 9023:80
