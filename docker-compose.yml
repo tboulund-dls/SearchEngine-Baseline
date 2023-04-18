@@ -5,14 +5,15 @@ services:
     build:
       context: .
       dockerfile: LoadBalancer/Dockerfile
+    image: nitrozeus1/search-engine-load-balancer:${DEPLOY_NUMBER}
     ports: 
       - 9020:80
   api-search:
     build:
       context: .
       dockerfile: "ApiSearch/Dockerfile"
+    image: nitrozeus1/api-search:${DEPLOY_NUMBER}
     volumes: #link your own database root here
-#      - "/home/pennyboi/db/EnronMini:/data"
       - "C:/EnronMini:/data"
     deploy:
       replicas: 3
@@ -22,5 +23,6 @@ services:
     build:
       context: .
       dockerfile: "WebSearch/Dockerfile"
+    image: nitrozeus1/web-search:${DEPLOY_NUMBER}
     ports:
       - 9023:80
