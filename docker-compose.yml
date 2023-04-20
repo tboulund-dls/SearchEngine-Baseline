@@ -8,6 +8,13 @@ services:
     image: nitrozeus1/search-engine-load-balancer
     ports: 
       - 9020:80
+  user-load-balancer:
+    build:
+      context: .
+      dockerfile: UserLoadBalancer/Dockerfile
+    image: nitrozeus1/search-engine-user-load-balancer
+    ports: 
+      - 9025:80
   api-search:
     build:
       context: .
@@ -24,6 +31,8 @@ services:
       context: .
       dockerfile: "UserApi/Dockerfile"
     image: nitrozeus1/api-user
+    deploy:
+      replicas: 3
     ports: 
       - 9021:80
   web-ui:

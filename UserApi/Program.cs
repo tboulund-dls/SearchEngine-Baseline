@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using RestSharp;
 using UserApi.Data;
+
+var restClient = new RestClient("http://user-load-balancer");
+restClient.Post(new RestRequest("UserLoadBalancer?url=http://" + Environment.MachineName, Method.Post));  
 
 var builder = WebApplication.CreateBuilder(args);
 
