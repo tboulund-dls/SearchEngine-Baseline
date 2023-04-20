@@ -17,7 +17,8 @@ var ViewModel = function() {
     
     me.init = function (){
         document.getElementById('search-button').disabled = true;
-        const apiKey = "b40958b8-3bd8-4b6b-bf1c-3d3548b724cd/BsMebU8H8nEEiVlBkmk2txLjGmBFmnqXhWss8bAF";
+        const apiKey = "200971cc-630c-44ee-aca6-67a3476429f6/kzhnuzkPYhM60l9lZr6EHKHJAcVAGrIR1at2yhN4";
+        
         $.ajax({
             url: "http://localhost:8085/features",
             type: "GET",
@@ -55,8 +56,7 @@ var ViewModel = function() {
     
     me.login = function (){
         $.ajax({
-             url: "http://localhost:9021/User",
-            //url: "http://localhost:8817/UserLoadBalancer",//todo To enable the load balancer use this URL and disbale the other, and if loadbalancer doesnt work please try to make it work
+            url: "http://localhost:9025/UserLoadBalancer",
 
             data: {username: me.username, password: me.password},       
             success: function () {

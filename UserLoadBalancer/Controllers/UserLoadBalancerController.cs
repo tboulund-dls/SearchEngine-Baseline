@@ -36,14 +36,19 @@ namespace UserLoadBalancer.Controllers {
         {
             ServiceModel service = _loadBalancer.NextService();
             service.activeQueries += 1;
-            
+
             RestClient serviceClient = new(service.url);
-            RestRequest request = new("/Login");
-            // request.AddParameter("username",username);
-            // request.AddParameter("password", password);
+            RestRequest request = new("/User");
+            request.AddParameter("username",username);
+            request.AddParameter("password", password);
             Task<User?> response = serviceClient.GetAsync<User>(request);
             response.Wait();
             User? result = response.Result;
+            if (result.id == 0)
+            {
+                result = null;
+            }
+            
             if (result is null)
             {
                 return NotFound("User doesnt exist");
