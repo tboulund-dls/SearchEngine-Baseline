@@ -1,4 +1,5 @@
-﻿using UserApi.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using UserApi.Models;
 
 namespace UserApi.Data;
 
@@ -10,8 +11,13 @@ public class UserRepository : IUserRepository
         context = ctx;
     }
 
-    public User GetUser(string username, string password)
+    public async Task<User> GetUser(string username, string password)
     {
-        return context.Users.Where(user => user.username == username && user.password == password).FirstOrDefault();
+        // User? getUser = await context.Users.Where(user => user.username == username && user.password == password).FirstOrDefault();
+        User? getUser = await context.Users.FirstOrDefaultAsync(user => user.username == username && user.password == password);
+        if (getUser is null) return null;
+        await context.Entry(getUser).ReloadAsync();
+        return getUser;
     }
+    
 }

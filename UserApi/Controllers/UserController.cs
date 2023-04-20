@@ -14,9 +14,9 @@ public class UserController : Controller
         _userRepository = userRepository;
     }
     [HttpGet]
-    public IActionResult Get(string username, string password)
+    public async Task<IActionResult> Get(string username, string password)
     {
-        User user = _userRepository.GetUser(username,password);
+        User? user = await _userRepository.GetUser(username,password);
 
         if (user == null)
         {
