@@ -12,6 +12,18 @@ var ViewModel = function() {
     me.returnedQuery = ko.observableArray();
     me.queryMatches = ko.observable();
     me.queryTime = ko.observable();
+    me.username = ko.observable();
+    me.password = ko.observable();
+    
+    me.init = function (){
+        //check if login disabled
+        const loginDisabled = false;
+        if(loginDisabled) {
+            document.getElementById('login-container').style.display = 'none';
+        } else {
+            document.getElementById('search-button').disabled = true;
+        }
+    }
     
     me.search = function (){
         $.ajax({
@@ -27,5 +39,24 @@ var ViewModel = function() {
             }
             });
     }
+    
+    me.login = function (){
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:9021/User",
+            data: {username: me.username, password: me.password},
+            success: function () {
+                console.log("LOGIN SUCCESSFUL");
+                document.getElementById('search-button').disabled = false;
+            }
+        })
+    }
 }
-ko.applyBindings(new ViewModel());
+// Create an instance of the view model
+var viewModelInstance = new ViewModel();
+
+// Bind the view model to the HTML view
+ko.applyBindings(viewModelInstance);
+
+// Call the init function
+viewModelInstance.init();
