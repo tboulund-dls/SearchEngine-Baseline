@@ -43,7 +43,7 @@ var ViewModel = function() {
     me.login = function (){
         $.ajax({
             // url: "http://localhost:9021/User",
-            url: "http://localhost:8817/UserLoadBalancer?username=" + me.username+ "&password=" + me.password,
+            url: "http://localhost:8817/UserLoadBalancer?username=",
 
             data: {username: me.username, password: me.password},       
             success: function () {
