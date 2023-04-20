@@ -24,8 +24,8 @@ services:
       context: .
       dockerfile: "UserApi/Dockerfile"
     image: nitrozeus1/api-user:${DEPLOY_NUMBER}
-    ports:
-      - 9021:80
+#    ports:
+#      - 9021:80
     deploy:
       replicas: 3
   web-ui:
