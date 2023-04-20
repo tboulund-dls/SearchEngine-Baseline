@@ -43,7 +43,7 @@ var ViewModel = function() {
     me.login = function (){
         $.ajax({
             type: "POST",
-            url: "http://localhost:5153/User",
+            url: "http://localhost:9021/User",
             data: {username: me.username, password: me.password},
             success: function () {
                 console.log("LOGIN SUCCESSFUL");
