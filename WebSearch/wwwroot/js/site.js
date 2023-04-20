@@ -16,6 +16,7 @@ var ViewModel = function() {
     me.password = ko.observable();
     
     me.init = function (){
+        document.getElementById('search-button').disabled = true;
         const apiKey = "b40958b8-3bd8-4b6b-bf1c-3d3548b724cd/BsMebU8H8nEEiVlBkmk2txLjGmBFmnqXhWss8bAF";
         $.ajax({
             url: "http://localhost:8085/features",
@@ -26,12 +27,12 @@ var ViewModel = function() {
                 const loginEnabled = data[0].features[0].value;
                 if(!loginEnabled) {
                     document.getElementById('login-container').style.display = 'none';
-                } else {
-                    document.getElementById('search-button').disabled = true;
+                    document.getElementById('search-button').disabled = false;
                 }
             },
             error: function () {
                 document.getElementById('login-container').style.display = 'none';
+                document.getElementById('search-button').disabled = false;
                 console.log("Feature hub failed therefore feature wont be shown");
             }
         })
