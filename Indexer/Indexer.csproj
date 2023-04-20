@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>Indexer</AssemblyName>
     <RootNamespace>Indexer</RootNamespace>
     <LangVersion>10</LangVersion>
@@ -14,7 +14,6 @@
     <None Remove="Microsoft.Data.Sqlite" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="SQLitePCLRaw.core" Version="2.0.7" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.2" />
   </ItemGroup>
   <ItemGroup>
