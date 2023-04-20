@@ -6,15 +6,8 @@ services:
       context: .
       dockerfile: LoadBalancer/Dockerfile
     image: nitrozeus1/search-engine-load-balancer:${DEPLOY_NUMBER}
-    ports: 
+    ports:
       - 9020:80
-  user-load-balancer:
-    build:
-      context: .
-      dockerfile: UserLoadBalancer/Dockerfile
-    image: nitrozeus1/search-engine-user-load-balancer:${DEPLOY_NUMBER}
-    ports: 
-      - 8817:80
   api-search:
     build:
       context: .
@@ -23,7 +16,7 @@ services:
     volumes: #link your own database root here
       - "C:/EnronMini:/data"
     deploy:
-      replicas: 1
+      replicas: 3
     depends_on:
       - load-balancer
   api-user:
@@ -31,10 +24,10 @@ services:
       context: .
       dockerfile: "UserApi/Dockerfile"
     image: nitrozeus1/api-user:${DEPLOY_NUMBER}
-    deploy:
-      replicas: 1
-    ports: 
+    ports:
       - 9021:80
+    deploy:
+      replicas: 3
   web-ui:
     build:
       context: .
@@ -49,6 +42,13 @@ services:
       - featurehub-h2-data:/db
     ports:
       - 8085:8085
+  user-load-balancer:
+    build:
+      context: .
+      dockerfile: UserLoadBalancer/Dockerfile
+    image: nitrozeus1/search-engine-user-load-balancer:${DEPLOY_NUMBER}
+    ports:
+      - 9025:80
 
 volumes:
   featurehub-h2-data:
