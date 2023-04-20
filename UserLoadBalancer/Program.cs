@@ -22,6 +22,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+Console.WriteLine("Testing if cors works?");
 
 //app.UseHttpsRedirection();
 
