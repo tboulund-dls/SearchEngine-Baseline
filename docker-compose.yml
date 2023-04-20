@@ -7,7 +7,7 @@ services:
       dockerfile: LoadBalancer/Dockerfile
     image: nitrozeus1/search-engine-load-balancer #:${DEPLOY_NUMBER}
     ports: 
-      - 9026:80
+      - 9020:80
   user-load-balancer:
     build:
       context: .
