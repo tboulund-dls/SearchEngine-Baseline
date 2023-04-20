@@ -23,8 +23,8 @@ var ViewModel = function() {
             data: {apiKey: apiKey, contextSha: 0},
             dataType: "json",
             success: function (data) {
-                const loginDisabled = data[0].features[0].value;
-                if(loginDisabled) {
+                const loginEnabled = data[0].features[0].value;
+                if(!loginEnabled) {
                     document.getElementById('login-container').style.display = 'none';
                 } else {
                     document.getElementById('search-button').disabled = true;
