@@ -29,6 +29,10 @@ var ViewModel = function() {
                 } else {
                     document.getElementById('search-button').disabled = true;
                 }
+            },
+            error: function () {
+                document.getElementById('login-container').style.display = 'none';
+                console.log("Feature hub failed therefore feature wont be shown");
             }
         })
     }
