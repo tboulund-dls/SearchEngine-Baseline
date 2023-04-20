@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using RestSharp;
 using UserApi.Data;
+
+var restClient = new RestClient("http://user-load-balancer");
+restClient.Post(new RestRequest("UserLoadBalancer?url=http://" + Environment.MachineName, Method.Post));  
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseAuthorization();
 
