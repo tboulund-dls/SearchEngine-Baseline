@@ -56,8 +56,7 @@ var ViewModel = function() {
     
     me.login = function (){
         $.ajax({
-             //url: "http://localhost:9021/User",
-            url: "http://localhost:9025/UserLoadBalancer",//todo To enable the load balancer use this URL and disbale the other, and if loadbalancer doesnt work please try to make it work
+            url: "http://localhost:9025/UserLoadBalancer",
 
             data: {username: me.username, password: me.password},       
             success: function () {
