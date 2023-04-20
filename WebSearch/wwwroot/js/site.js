@@ -16,13 +16,21 @@ var ViewModel = function() {
     me.password = ko.observable();
     
     me.init = function (){
-        //check if login disabled
-        const loginDisabled = false;
-        if(loginDisabled) {
-            document.getElementById('login-container').style.display = 'none';
-        } else {
-            document.getElementById('search-button').disabled = true;
-        }
+        const apiKey = "b40958b8-3bd8-4b6b-bf1c-3d3548b724cd/BsMebU8H8nEEiVlBkmk2txLjGmBFmnqXhWss8bAF";
+        $.ajax({
+            url: "http://localhost:8085/features",
+            type: "GET",
+            data: {apiKey: apiKey, contextSha: 0},
+            dataType: "json",
+            success: function (data) {
+                const loginDisabled = data[0].features[0].value;
+                if(loginDisabled) {
+                    document.getElementById('login-container').style.display = 'none';
+                } else {
+                    document.getElementById('search-button').disabled = true;
+                }
+            }
+        })
     }
     
     me.search = function (){
