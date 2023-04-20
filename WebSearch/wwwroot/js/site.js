@@ -27,7 +27,7 @@ var ViewModel = function() {
     
     me.search = function (){
         $.ajax({
-            url: "http://localhost:9020/LoadBalancer?terms=" + me.userQuery() + "&numberOfResults=10", //todo use load balancer
+            url: "http://localhost:9020/LoadBalancer?terms=" + me.userQuery() + "&numberOfResults=10",
             success: function (data) {
                 me.queryMatches(data.documents.length);
                 me.queryTime(data.elapsedMilliseconds);
@@ -43,7 +43,7 @@ var ViewModel = function() {
     me.login = function (){
         $.ajax({
             // url: "http://localhost:9021/User",
-            url: "http://localhost:9025/UserLoadBalancer?username=" + me.username + "&password=" + me.password,
+            url: "http://localhost:8817/UserLoadBalancer?username=" + me.username+ "&password=" + me.password,
 
             data: {username: me.username, password: me.password},
             success: function () {
