@@ -45,7 +45,7 @@ var ViewModel = function() {
             // url: "http://localhost:9021/User",
             url: "http://localhost:8817/UserLoadBalancer?username=" + me.username+ "&password=" + me.password,
 
-            data: {username: me.username, password: me.password},
+            data: {username: me.username, password: me.password},       
             success: function () {
                 console.log("LOGIN SUCCESSFUL");
                 document.getElementById('search-button').disabled = false;

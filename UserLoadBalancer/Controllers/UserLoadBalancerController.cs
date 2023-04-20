@@ -39,8 +39,8 @@ namespace UserLoadBalancer.Controllers {
             
             RestClient serviceClient = new(service.url);
             RestRequest request = new("/Login");
-            request.AddParameter("username",username);
-            request.AddParameter("password", password);
+            // request.AddParameter("username",username);
+            // request.AddParameter("password", password);
             Task<User?> response = serviceClient.GetAsync<User>(request);
             response.Wait();
             User? result = response.Result;
