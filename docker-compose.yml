@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  load-balancer:
+    build:
+      context: .
+      dockerfile: LoadBalancer/Dockerfile
+    image: nitrozeus1/search-engine-load-balancer
+    ports: 
+      - 9020:80
+  api-search:
+    build:
+      context: .
+      dockerfile: "ApiSearch/Dockerfile"
+    image: nitrozeus1/api-search
+    volumes: #link your own database root here
+      - "C:/EnronMini:/data"
+    deploy:
+      replicas: 3
+    depends_on:
+      - load-balancer
+  api-user:
+    build:
+      context: .
+      dockerfile: "UserApi/Dockerfile"
+    image: nitrozeus1/api-user
+    ports: 
+      - 9021:80
+  web-ui:
+    build:
+      context: .
+      dockerfile: "WebSearch/Dockerfile"
+    image: nitrozeus1/web-search
+    ports:
+      - 9023:80
