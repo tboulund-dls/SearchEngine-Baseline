@@ -17,7 +17,7 @@ var ViewModel = function() {
     
     me.init = function (){
         document.getElementById('search-button').disabled = true;
-        const apiKey = "200971cc-630c-44ee-aca6-67a3476429f6/kzhnuzkPYhM60l9lZr6EHKHJAcVAGrIR1at2yhN4";
+        const apiKey = "b40958b8-3bd8-4b6b-bf1c-3d3548b724cd/BsMebU8H8nEEiVlBkmk2txLjGmBFmnqXhWss8bAF";
         
         $.ajax({
             url: "http://localhost:8085/features",
